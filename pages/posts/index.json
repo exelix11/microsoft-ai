@@ -1,0 +1,7 @@
+[
+	{"img":"1.png", "date":"2025-10-18", "link":"https://www.windowslatest.com/2025/10/18/microsoft-confirms-windows-11-october-2025-update-breaks-winre-recovery-input/"},
+	{"img":"2.png", "date":"2025-10-16", "link":"https://www.bleepingcomputer.com/news/microsoft/windows-11-updates-break-localhost-127001-http-2-connections/"},
+	{"text":"Microsoft: Windows 11 Media Creation Tool broken on Windows 10 PCs", "date":"2025-10-13", "link":"https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-11-media-creation-tool-broken-on-windows-10-pcs/"},
+	{"text":"Microsoft October 2025 Security Update Triggers AD Sync Issues on Windows Server 2025", "date":"2025-10-16", "link":"https://cyberpress.org/microsoft-october-2025-security-update-triggers-ad-sync-issues/"},
+	{"text":"Microsoft confirmed a bug in the October 2025 Update is causing BitLocker recovery on reboot.", "date":"2025-11-07", "link":"https://x.com/WindowsLatest/status/1986021953476640884"}
+]

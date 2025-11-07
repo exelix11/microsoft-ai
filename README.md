@@ -1,2 +1,3 @@
 # microsoft-ai
-Meme repo, nothing to see here
+
+This is entirely AI coded for a meme.

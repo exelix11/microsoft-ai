@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --bg: #000;
+  --fg: #eee;
+  --accent: #4dabf7;
+  --card-bg: #ffffff;
+  --card-border: rgba(0,0,0,.08);
+  --card-fg: #000000;
+  --radius: 18px;
+  --ease: cubic-bezier(.4,.14,.3,1.02);
+}
+html, body { height: 100%; }
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+  overflow-y: scroll;
+}
+.site-header { position: relative; z-index: 1; display: flex; justify-content: center; padding: clamp(1rem,2vw,2.5rem) 1rem 0; }
+.hero { max-width: min(420px, 60vw); width: 100%; height: auto; filter: drop-shadow(0 0 12px rgba(255,255,255,.05)); }
+main { width: 100%; max-width: 1150px; margin: 0 auto; padding: 1rem clamp(.75rem,2vw,2rem) 4rem; }
+.posts { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 3.8rem; margin-top: calc(-1 * var(--overlap, 0px)); }
+#sentinel { width: 100%; height: 60px; }
+
+.card-wrapper { position: relative; width: 100%; display: flex; justify-content: center; }
+.card-wrapper.left { justify-content: center; }
+.card-wrapper.right { justify-content: center; }
+
+/* Slightly stagger cards around center on wide screens */
+@media (min-width: 861px) {
+  .card-wrapper.left { transform: translateX(-5vw); }
+  .card-wrapper.right { transform: translateX(10vw); }
+}
+
+.post-card {
+  --offset: 0px;
+  width: clamp(280px, 52%, 520px);
+  background: linear-gradient(145deg, var(--card-bg), #f8f8f8);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+  position: relative;
+  box-shadow: 0 6px 16px -10px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.02);
+  opacity: 0;
+  transform: translateX(var(--offset)) translateY(10px) scale(.98);
+  transition: opacity .9s var(--ease), transform 1s var(--ease), box-shadow .4s var(--ease);
+  overflow: hidden;
+  color: var(--card-fg);
+}
+.post-card:focus-within, .post-card:hover { box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 8px 26px -12px rgba(0,0,0,.85); }
+.post-card.in-view { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+
+/* End card variant */
+.post-card.end { --offset: 0; text-align: center; font-weight: 700; letter-spacing: .08em; opacity: 0; }
+.card-wrapper .post-card.end { margin-inline: auto; }
+
+.post-date { font-size: .7rem; text-transform: uppercase; letter-spacing: .18em; font-weight: 600; opacity: .8; }
+.post-body { font-size: 1rem; font-weight: 500; }
+.post-body img { width: 100%; height: auto; border-radius: calc(var(--radius) - 6px); display: block; }
+.post-link { align-self: flex-start; font-size: .75rem; text-decoration: none; text-transform: uppercase; letter-spacing: .2em; font-weight: 600; padding: .55rem .9rem .5rem; background: #1a1f24; border-radius: 999px; border: 1px solid #2a3239; color: var(--fg); position: relative; overflow: hidden; }
+.post-link::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg,rgba(255,255,255,.08),rgba(255,255,255,0)); opacity: 0; transition: opacity .5s var(--ease); }
+.post-link:hover::before, .post-link:focus::before { opacity: 1; }
+.post-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Make entire card clickable when it's an anchor */
+a.post-card { text-decoration: none; color: var(--card-fg); cursor: pointer; }
+a.post-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (max-width: 860px) {
+  main { padding-bottom: 6rem; }
+  .post-card { width: min(92%, 520px); }
+  .card-wrapper.left, .card-wrapper.right { justify-content: center; }
+}
+
+/* Entry animation offsets */
+.card-wrapper.left .post-card { --offset: -140px; }
+.card-wrapper.right .post-card { --offset: 140px; }
+
+/* Subtle gradient hairlines */
+.post-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(90% 50% at 50% 0%, rgba(0,0,0,.06), transparent 70%); mix-blend-mode: normal; opacity: .08; }
+
+/* Scrollbar styling for desktop */
+body { scrollbar-width: thin; scrollbar-color: #222 #000; }
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: #050505; }
+body::-webkit-scrollbar-thumb { background: linear-gradient(#222,#111); border-radius: 20px; border: 2px solid #050505; }
+body::-webkit-scrollbar-thumb:hover { background: linear-gradient(#2d2d2d,#151515); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .post-card { transition: none; transform: none !important; opacity: 1 !important; }
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Infinite Scroll Posts</title>
+	<meta name="description" content="Endless scrolling staggered posts." />
+	<link rel="preload" as="image" href="base.png" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<header class="site-header" role="banner">
+		<img src="base.png" alt="Brand image" class="hero" />
+	</header>
+	<main id="main" role="main">
+		<div id="posts" class="posts" aria-live="polite" aria-busy="false" aria-label="posts"></div>
+	</main>
+	<noscript>You need JavaScript enabled to view the infinite scrolling posts.</noscript>
+	<script src="script.js" defer></script>
+</body>
+</html>
